@@ -29,6 +29,12 @@
 #define HANDLER_STEP        8
 #define MM_STEP             16
 
+#define PINO_VERSION_ID 10000000
+
+#ifndef PINO_BUILDTIME
+# define PINO_BUILDTIME 0
+#endif
+
 typedef struct {
     size_t usage;
     size_t capacity;

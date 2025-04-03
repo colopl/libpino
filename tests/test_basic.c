@@ -13,8 +13,9 @@
 #include <pino.h>
 #include <pino/handler.h>
 
-#include "handler_spl1.h"
+#include "../src/pino_internal.h"
 
+#include "handler_spl1.h"
 #include "util.h"
 
 #include "unity.h"
@@ -197,6 +198,16 @@ void test_pino_serialize(void)
     free(unserialized_data);
 }
 
+void test_version_id(void)
+{
+    TEST_ASSERT_EQUAL_UINT32(PINO_VERSION_ID, pino_version_id());
+}
+
+void test_buildtime(void)
+{
+    TEST_ASSERT_GREATER_THAN(0, pino_buildtime());
+}
+
 int main(void)
 {
     UNITY_BEGIN();
@@ -209,6 +220,9 @@ int main(void)
     RUN_TEST(test_pack_fail);
     RUN_TEST(test_pack_glowing);
     RUN_TEST(test_pino_serialize);
-    
+
+    RUN_TEST(test_version_id);
+    RUN_TEST(test_buildtime);
+
     return UNITY_END();
 }

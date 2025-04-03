@@ -21,6 +21,8 @@
 extern "C" {
 #endif
 
+typedef uint32_t pino_buildtime_t;
+
 typedef struct _pino_handler_t pino_handler_t;
 
 typedef char pino_magic_t[4];
@@ -42,6 +44,9 @@ pino_t *pino_pack(pino_magic_safe_t magic, const void *src, size_t size);
 size_t pino_unpack_size(const pino_t *pino);
 bool pino_unpack(const pino_t *pino, void *dest);
 void pino_destroy(pino_t *pino);
+
+uint32_t pino_version_id(void);
+pino_buildtime_t pino_buildtime(void);
 
 #ifdef __cplusplus
 }

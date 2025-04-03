@@ -155,3 +155,13 @@ extern void pino_destroy(pino_t *pino)
 
     pfree(pino);
 }
+
+extern uint32_t pino_version_id()
+{
+    return (uint32_t)PINO_VERSION_ID;
+}
+
+extern pino_buildtime_t pino_buildtime()
+{
+    return (pino_buildtime_t)PINO_BUILDTIME;
+}
