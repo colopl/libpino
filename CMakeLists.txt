@@ -25,6 +25,8 @@ option(PINO_USE_COVERAGE "Use coverage if available" OFF)
 option(PINO_USE_SUPPLIMENTS "Use suppliments (debbuging feature)" OFF)
 option(PINO_USE_TESTS "Use tests" OFF)
 
+option(PINO_ENABLE_SHARED "Enable shared library" OFF)
+
 if(PINO_USE_SUPPLIMENTS)
   add_definitions(-DPINO_SUPPLIMENTS)
 endif()
@@ -94,7 +96,9 @@ if(PINO_ENABLE_COVERAGE)
 endif()
 
 add_library(pino STATIC $<TARGET_OBJECTS:pino-obj>)
-add_library(pino-shared SHARED $<TARGET_OBJECTS:pino-obj>)
+if(PINO_ENABLE_SHARED)
+  add_library(pino-shared SHARED $<TARGET_OBJECTS:pino-obj>)
+endif()
 
 if(PINO_ENABLE_COVERAGE)
   target_link_options(pino PRIVATE "--coverage")
